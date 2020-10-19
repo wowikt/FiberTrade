@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyCalculation.Wpf", "BuyCalculation.Wpf\BuyCalculation.Wpf.csproj", "{54377BC5-489D-4114-8C59-C4BED39311C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyCalculation.Business", "BuyCalculation.Business\BuyCalculation.Business.csproj", "{38EF4517-A16E-41FB-A86D-62DB00E3CA11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54377BC5-489D-4114-8C59-C4BED39311C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54377BC5-489D-4114-8C59-C4BED39311C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54377BC5-489D-4114-8C59-C4BED39311C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54377BC5-489D-4114-8C59-C4BED39311C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38EF4517-A16E-41FB-A86D-62DB00E3CA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38EF4517-A16E-41FB-A86D-62DB00E3CA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38EF4517-A16E-41FB-A86D-62DB00E3CA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38EF4517-A16E-41FB-A86D-62DB00E3CA11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {136A52FD-D976-4869-AD97-E10D7FE8906B}
+	EndGlobalSection
+EndGlobal

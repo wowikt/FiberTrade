@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixMultiplier.Wpf", "MatrixMultiplier.Wpf\MatrixMultiplier.Wpf.csproj", "{40FA9293-E6A8-436C-B1A5-1A7798A94AE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixMultiplier.Business", "MatrixMultiplier.Business\MatrixMultiplier.Business.csproj", "{0A251B9F-5B2E-41B7-944A-E0978237CB5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40FA9293-E6A8-436C-B1A5-1A7798A94AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40FA9293-E6A8-436C-B1A5-1A7798A94AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40FA9293-E6A8-436C-B1A5-1A7798A94AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40FA9293-E6A8-436C-B1A5-1A7798A94AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A251B9F-5B2E-41B7-944A-E0978237CB5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A251B9F-5B2E-41B7-944A-E0978237CB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A251B9F-5B2E-41B7-944A-E0978237CB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A251B9F-5B2E-41B7-944A-E0978237CB5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCBD6E91-4A0D-4471-94E2-E61C00F8EDD0}
+	EndGlobalSection
+EndGlobal

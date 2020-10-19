@@ -1,0 +1,30 @@
+﻿<Window x:Class="BuyCalculation.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BuyCalculation.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TableViewModel}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование товара" Binding="{Binding GoodsName}" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" />
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Cost}" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Name="CalculateButton" Margin="5" Padding="5" Click="CalculateButton_Click">Вычислить</Button>
+            <TextBlock VerticalAlignment="Center" Margin="50,5,5,5" Text="Итого на сумму:" />
+            <TextBlock VerticalAlignment="Center" Margin="5" Text="{Binding TotalCost}" />
+        </StackPanel>
+    </Grid>
+</Window>

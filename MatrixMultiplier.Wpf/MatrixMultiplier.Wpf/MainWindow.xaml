@@ -7,6 +7,67 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Матрица A" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Margin="5" VerticalAlignment="Center" Text="Матрица B" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Строк:" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding ARowCount}" />
+            <TextBlock Grid.Row="1" Grid.Column="2" Margin="5" VerticalAlignment="Center" Text="Строк:" />
+            <TextBox Grid.Row="1" Grid.Column="3" Margin="5" VerticalAlignment="Center" IsEnabled="False" Text="{Binding AColumnCount}" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Столбцов:" />
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding AColumnCount}" />
+            <TextBlock Grid.Row="2" Grid.Column="2" Margin="5" VerticalAlignment="Center" Text="Столбцов:" />
+            <TextBox Grid.Row="2" Grid.Column="3" Margin="5" VerticalAlignment="Center" Text="{Binding BColumnCount}" />
+
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="SetSizeButton" Margin="5" Padding="5" Click="SetSizeButton_Click">Задать размеры</Button>
+                <Button Name="MuliplyButton" Margin="5" Padding="5" Click="MuliplyButton_Click">Умножить</Button>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <TextBlock Margin="5" Text="Матрица A" />
+            <DataGrid Name="AMatrixDataGrid" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                      CanUserReorderColumns="False" CanUserSortColumns="False" ItemsSource="{Binding AMatrixData}"></DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Margin="5" Text="Матрица B" />
+            <DataGrid Name="BMatrixDataGrid" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                      CanUserReorderColumns="False" CanUserSortColumns="False" ItemsSource="{Binding BMatrixData}"></DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <TextBlock Margin="5" Text="Результат" />
+            <DataGrid Name="ResultMatrixDataGrid" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                      CanUserReorderColumns="False" CanUserSortColumns="False" ItemsSource="{Binding ResultMatrixData}"></DataGrid>
+        </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,11 @@
+﻿@model FifteenGameAspNet.Models.DialogViewModel
+
+@{
+    ViewBag.Title = "Reply";
+}
+
+<h2>Привет!</h2>
+
+<div>
+    Добрый день, @(string.IsNullOrEmpty(Model.Name) ? "незнакомец" : Model.Name)!
+</div>

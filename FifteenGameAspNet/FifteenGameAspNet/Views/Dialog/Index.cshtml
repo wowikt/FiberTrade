@@ -1,0 +1,17 @@
+﻿@model FifteenGameAspNet.Models.DialogViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Здравствуйте!</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @ViewBag.GreetingMessage @Html.EditorFor(m => m.Name)
+    </div>
+    <div>
+        <input class="btn btn-primary" type="submit" value="Привет!" />
+    </div>
+}

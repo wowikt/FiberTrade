@@ -1,0 +1,47 @@
+﻿@model FifteenGameAspNet.Models.Game15ViewModel
+
+@{
+    ViewBag.Title = "Игра 15";
+}
+
+<script>
+    function sendRequest(direction) {
+        if (direction == '') {
+            return;
+        }
+
+        $.post('@Url.Action("Index")', 'direction=' + direction);
+        location.reload();
+    }
+</script>
+
+<h2>Игра 15</h2>
+<div class="container">
+    @for (int row = 0; row < Model.RowCount; row++)
+    {
+        <div class="row">
+            @for (int col = 0; col < Model.ColumnCount; col++)
+            {
+                <div class="col-md-1">
+                    @if (Model.Buttons[row, col].IsVisible)
+                    {
+                        @*string url = "#";
+                        if (Model.Buttons[row, col].IsEnabled)
+                        {
+                            url = Url.Action("MakeMove", new { direction = Model.Buttons[row, col].MoveDirection.ToString() });
+                        }
+                        <a class="btn btn-primary" href="@url" role="button">@Model.Buttons[row, col].Text</a>*@
+
+                        string direction = string.Empty;
+                        if (Model.Buttons[row, col].IsEnabled)
+                        {
+                            direction = Model.Buttons[row, col].MoveDirection.ToString();
+                        }
+
+                        <button class="btn btn-primary" onclick="sendRequest('@direction');">@Model.Buttons[row, col].Text</button>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>

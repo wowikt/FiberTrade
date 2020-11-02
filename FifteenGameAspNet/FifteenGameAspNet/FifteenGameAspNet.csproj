@@ -121,12 +121,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DialogController.cs" />
+    <Compile Include="Controllers\Game15Controller.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ButtonViewModel.cs" />
     <Compile Include="Models\DialogViewModel.cs" />
+    <Compile Include="Models\Game15ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +172,7 @@
     <Content Include="Views\Greeting\VeryGood.cshtml" />
     <Content Include="Views\Dialog\Index.cshtml" />
     <Content Include="Views\Dialog\Reply.cshtml" />
+    <Content Include="Views\Game15\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -185,6 +189,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FifteenGame.Wpf\FifteenGame.Business\FifteenGame.Business.csproj">
+      <Project>{77f62970-7339-4395-8a74-d052f1d13036}</Project>
+      <Name>FifteenGame.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

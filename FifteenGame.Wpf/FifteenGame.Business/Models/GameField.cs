@@ -22,5 +22,49 @@ namespace FifteenGame.Business.Models
         public int EmptyCellRow { get; set; }
 
         public int EmptyCellColumn { get; set; }
+
+        public IEnumerable<int> GetState()
+        {
+            var result = new List<int>();
+
+            for (int row = 0; row < RowCount; row++)
+            {
+                for (int column = 0; column < ColumnCount; column++)
+                {
+                    result.Add(_field[row, column]);
+                }
+            }
+
+            return result;
+        }
+
+        public bool SetState(IEnumerable<int> state)
+        {
+            var stateList = state.ToList();
+            if (state.Count() != RowCount * ColumnCount)
+            {
+                return false;
+            }
+
+            // TODO: Проверить, что в исходном массиве содержатся различные значения от 0 до 15
+
+            int i = 0;
+            for (int row = 0; row < RowCount; row++)
+            {
+                for (int column = 0; column < ColumnCount; column++)
+                {
+                    _field[row, column] = stateList[i];
+                    if (stateList[i] == 0)
+                    {
+                        EmptyCellRow = row;
+                        EmptyCellColumn = column;
+                    }
+
+                    i++;
+                }
+            }
+
+            return true;
+        }
     }
 }

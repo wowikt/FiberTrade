@@ -69,6 +69,8 @@ namespace FifteenGame.Business.Services
 
                     break;
             }
+
+            GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn] = 0;
         }
 
         public void Shuffle()

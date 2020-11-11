@@ -1,12 +1,13 @@
-﻿using FifteenGame.Business.Models;
+﻿using FifteenGame.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FifteenGameWebApi.Models
+namespace FifteenGame.Common.Dto
 {
-    public class MoveInputModel
+    public class MoveInputDto
     {
         public IEnumerable<int> State { get; set; }
 

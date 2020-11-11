@@ -161,7 +161,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\MoveInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +250,10 @@
     <ProjectReference Include="..\..\FifteenGame.Wpf\FifteenGame.Business\FifteenGame.Business.csproj">
       <Project>{77f62970-7339-4395-8a74-d052f1d13036}</Project>
       <Name>FifteenGame.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FifteenGame.Common\FifteenGame.Common.csproj">
+      <Project>{4b2c8e75-0e9e-4cce-acc9-7cc6259f1124}</Project>
+      <Name>FifteenGame.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

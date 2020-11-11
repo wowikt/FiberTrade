@@ -1,4 +1,5 @@
-﻿using FifteenGame.Business.Models;
+﻿using FifteenGame.Common.Enums;
+using FifteenGame.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

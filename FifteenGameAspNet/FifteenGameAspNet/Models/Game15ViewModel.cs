@@ -1,5 +1,6 @@
-﻿using FifteenGame.Business.Models;
-using FifteenGame.Business.Services;
+﻿using FifteenGame.Business.Services;
+using FifteenGame.Common.Enums;
+using FifteenGame.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace FifteenGameAspNet.Models
 
         public void BuildFromService(GameService service)
         {
-            var field = service.GameField;
+            var field = service.GetField();
             RowCount = GameField.RowCount;
             ColumnCount = GameField.ColumnCount;
             Buttons = new ButtonViewModel[RowCount, ColumnCount];

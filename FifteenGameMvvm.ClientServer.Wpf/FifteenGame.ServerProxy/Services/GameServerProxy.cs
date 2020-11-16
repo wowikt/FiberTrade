@@ -1,5 +1,7 @@
 ﻿using FifteenGame.Common.Dto;
 using FifteenGame.Common.Enums;
+using FifteenGame.Common.Interfaces;
+using FifteenGame.Common.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,13 +13,20 @@ using System.Threading.Tasks;
 
 namespace FifteenGame.ServerProxy.Services
 {
-    public class GameServerProxy
+    public class GameServerProxy : IGameService
     {
         private readonly string _appPath = ConfigurationManager.AppSettings["AppPath"];
 
         public IEnumerable<int> State { get; private set; }
 
-        public void Initialize()
+        public GameField GetField()
+        {
+            var result = new GameField();
+            result.SetState(State);
+            return result;
+        }
+
+        public void StartNewGame()
         {
             using (var client = new HttpClient())
             {

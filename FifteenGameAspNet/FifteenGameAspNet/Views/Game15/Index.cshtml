@@ -13,6 +13,15 @@
         $.post('@Url.Action("Index")', 'direction=' + direction);
         location.reload();
     }
+
+    function sendRequest2(direction) {
+        if (direction == '') {
+            return;
+        }
+
+        $('#direction').val(direction);
+        $('#main-form').submit();
+    }
 </script>
 
 <h2>Игра 15</h2>
@@ -38,10 +47,15 @@
                             direction = Model.Buttons[row, col].MoveDirection.ToString();
                         }
 
-                        <button class="btn btn-primary" onclick="sendRequest('@direction');">@Model.Buttons[row, col].Text</button>
+                        <button class="btn btn-primary" onclick="sendRequest2('@direction');">@Model.Buttons[row, col].Text</button>
                     }
                 </div>
             }
         </div>
     }
 </div>
+
+@using (Html.BeginForm("MakeMove", "Game15", FormMethod.Post, new { id = "main-form" }))
+{
+    @Html.Hidden("direction");
+}

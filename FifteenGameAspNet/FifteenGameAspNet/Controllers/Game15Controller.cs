@@ -1,5 +1,5 @@
-﻿using FifteenGame.Business.Models;
-using FifteenGame.Business.Services;
+﻿using FifteenGame.Business.Services;
+using FifteenGame.Common.Enums;
 using FifteenGameAspNet.Models;
 using System;
 using System.Collections.Generic;
@@ -44,12 +44,10 @@ namespace FifteenGameAspNet.Controllers
         public ActionResult Index(MoveDirection direction)
         {
             Service.MakeMove(direction);
-            //var viewModel = new Game15ViewModel();
-            //viewModel.BuildFromService(Service);
-            //return View(viewModel);
             return new JsonResult();
         }
 
+        [HttpPost]
         public ActionResult MakeMove(MoveDirection direction)
         {
             Service.MakeMove(direction);

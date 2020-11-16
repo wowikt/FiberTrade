@@ -1,4 +1,5 @@
 ﻿using FifteenGame.Common.Enums;
+using FifteenGame.Common.Interfaces;
 using FifteenGame.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FifteenGame.Business.Services
 {
-    public class GameService
+    public class GameService : IGameService
     {
         public GameField GameField { get; } = new GameField();
 
@@ -83,6 +84,17 @@ namespace FifteenGame.Business.Services
                 var direction = (MoveDirection)(rnd.Next(4) + 1);
                 MakeMove(direction);
             }
+        }
+
+        public void StartNewGame()
+        {
+            Initialize();
+            Shuffle();
+        }
+
+        public GameField GetField()
+        {
+            return GameField;
         }
     }
 }

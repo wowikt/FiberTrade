@@ -1,5 +1,6 @@
 ﻿using FifteenGame.Common.Enums;
 using FifteenGameIoc.Wpf.ViewModels;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,24 @@ namespace FifteenGameIoc.Wpf.Views
             if ((direction ?? MoveDirection.None) != MoveDirection.None)
             {
                 ViewModel.MakeMove(direction.Value);
+            }
+        }
+
+        private void SaveGameMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new SaveFileDialog { Filter = "Файлы игры (*.game)|*.game|Все файлы (*.*)|*.*" };
+            if (dlg.ShowDialog() == true)
+            {
+                ViewModel.SaveToFile(dlg.FileName);
+            }
+        }
+
+        private void OpenGameMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new OpenFileDialog { Filter = "Файлы игры (*.game)|*.game|Все файлы (*.*)|*.*" };
+            if (dlg.ShowDialog() == true)
+            {
+                ViewModel.ReadFromFile(dlg.FileName);
             }
         }
     }

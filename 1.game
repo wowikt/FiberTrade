@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<GameState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Cells>
+    <Cell>0</Cell>
+    <Cell>4</Cell>
+    <Cell>14</Cell>
+    <Cell>12</Cell>
+    <Cell>9</Cell>
+    <Cell>3</Cell>
+    <Cell>8</Cell>
+    <Cell>7</Cell>
+    <Cell>6</Cell>
+    <Cell>11</Cell>
+    <Cell>10</Cell>
+    <Cell>15</Cell>
+    <Cell>1</Cell>
+    <Cell>5</Cell>
+    <Cell>13</Cell>
+    <Cell>2</Cell>
+  </Cells>
+  <GameTime>11:47:47.1389711</GameTime>
+  <MoveCount>0</MoveCount>
+</GameState>

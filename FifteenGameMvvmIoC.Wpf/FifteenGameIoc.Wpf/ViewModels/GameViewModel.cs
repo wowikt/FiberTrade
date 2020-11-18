@@ -1,6 +1,8 @@
 ﻿using FifteenGame.Common.Enums;
 using FifteenGame.Common.Interfaces;
 using FifteenGame.Common.Models;
+using FifteenGame.FileService.Models;
+using FifteenGame.FileService.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,7 @@ namespace FifteenGameIoc.Wpf.ViewModels
     public class GameViewModel
     {
         private IGameService _service;
+        private int _moveCount = 0;
 
         public ObservableCollection<ButtonViewModel> Buttons { get; } = new ObservableCollection<ButtonViewModel>();
 
@@ -21,6 +24,7 @@ namespace FifteenGameIoc.Wpf.ViewModels
         {
             _service = service;
             _service.StartNewGame();
+            _moveCount = 0;
             BuildViewModel();
         }
 
@@ -32,6 +36,26 @@ namespace FifteenGameIoc.Wpf.ViewModels
             }
 
             _service.MakeMove(direction);
+            _moveCount++;
+            UpdateViewModel();
+        }
+
+        public void SaveToFile(string fileName)
+        {
+            var saveModel = new SaveGameStateModel
+            {
+                State = _service.GetField().GetState().ToList(),
+                GameTime = DateTime.Now.TimeOfDay,
+                MoveCount= _moveCount,
+            };
+            new XmlFileService().SaveToFile(saveModel, fileName);
+        }
+
+        public void ReadFromFile(string fileName)
+        {
+            var openModel = new XmlFileService().ReadFromFile(fileName);
+            _service.GetField().SetState(openModel.State);
+            _moveCount = openModel.MoveCount;
             UpdateViewModel();
         }
 

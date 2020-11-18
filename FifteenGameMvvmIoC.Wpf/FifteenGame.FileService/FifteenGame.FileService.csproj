@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{31D049E1-CCFE-4BA7-B096-D5A76B63A42F}</ProjectGuid>
+    <ProjectGuid>{C944D5ED-9164-4CF0-8525-86E416E5BEDB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FifteenGameIoc.Wpf</RootNamespace>
-    <AssemblyName>FifteenGameIoc.Wpf</AssemblyName>
+    <RootNamespace>FifteenGame.FileService</RootNamespace>
+    <AssemblyName>FifteenGame.FileService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,42 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\SaveGameStateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ButtonViewModel.cs" />
-    <Compile Include="ViewModels\GameViewModel.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Services\XmlFileService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FifteenGameWebApi\FifteenGame.Common\FifteenGame.Common.csproj">
-      <Project>{4b2c8e75-0e9e-4cce-acc9-7cc6259f1124}</Project>
-      <Name>FifteenGame.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FifteenGame.FileService\FifteenGame.FileService.csproj">
-      <Project>{c944d5ed-9164-4cf0-8525-86e416e5bedb}</Project>
-      <Name>FifteenGame.FileService</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

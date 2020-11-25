@@ -48,7 +48,7 @@ namespace FifteenGameIoc.Wpf.Views
 
         private void SaveGameMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new SaveFileDialog { Filter = "Файлы игры (*.game)|*.game|Все файлы (*.*)|*.*" };
+            var dlg = new SaveFileDialog { Filter = "Файлы игры XML (*.game)|*.game|Файлы игры JSON (*.jgame)|*.jgame|Все файлы (*.*)|*.*" };
             if (dlg.ShowDialog() == true)
             {
                 ViewModel.SaveToFile(dlg.FileName);
@@ -57,7 +57,7 @@ namespace FifteenGameIoc.Wpf.Views
 
         private void OpenGameMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new OpenFileDialog { Filter = "Файлы игры (*.game)|*.game|Все файлы (*.*)|*.*" };
+            var dlg = new OpenFileDialog { Filter = "Файлы игры XML (*.game)|*.game|Файлы игры JSON (*.jgame)|*.jgame|Все файлы (*.*)|*.*" };
             if (dlg.ShowDialog() == true)
             {
                 ViewModel.ReadFromFile(dlg.FileName);

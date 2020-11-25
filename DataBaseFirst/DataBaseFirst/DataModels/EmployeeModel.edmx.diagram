@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aefc21d4d96141f199687e282a397178" Name="Diagram1">
+        <EntityTypeShape EntityType="EmployeesModel.country" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeesModel.department" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeesModel.dependent" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeesModel.employee" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeesModel.job" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeesModel.location" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeesModel.region" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="EmployeesModel.FK__countries__regio__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeesModel.FK__locations__count__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeesModel.FK__departmen__locat__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeesModel.FK__employees__depar__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeesModel.FK__dependent__emplo__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeesModel.FK__employees__job_i__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeesModel.FK__employees__manag__5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

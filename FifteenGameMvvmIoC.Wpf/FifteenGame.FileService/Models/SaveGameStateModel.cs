@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace FifteenGame.FileService.Models
         public List<int> State { get; set; }
 
         [XmlElement("GameTime")]
+        [JsonProperty("GameTime")]
         public string GameTimeText
         {
             get => GameTime.ToString();
@@ -23,6 +25,7 @@ namespace FifteenGame.FileService.Models
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public TimeSpan GameTime { get; set; }
 
         public int MoveCount { get; set; }

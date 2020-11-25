@@ -11,21 +11,21 @@ namespace FifteenGame.FileService.Services
 {
     public class XmlFileService
     {
-        public void SaveToFile(SaveGameStateModel model, string fileName)
+        public void SaveToFile<T>(T model, string fileName)
         {
-            var serializer = new XmlSerializer(typeof(SaveGameStateModel));
+            var serializer = new XmlSerializer(typeof(T));
             using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 serializer.Serialize(fs, model);
             }
         }
 
-        public SaveGameStateModel ReadFromFile(string fileName)
+        public T ReadFromFile<T>(string fileName)
         {
-            var serializer = new XmlSerializer(typeof(SaveGameStateModel));
+            var serializer = new XmlSerializer(typeof(T));
             using (var fs = new FileStream(fileName, FileMode.Open))
             {
-                return (SaveGameStateModel)serializer.Deserialize(fs);
+                return (T)serializer.Deserialize(fs);
             }
         }
     }

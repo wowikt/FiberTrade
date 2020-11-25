@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,12 +49,29 @@ namespace FifteenGameIoc.Wpf.ViewModels
                 GameTime = DateTime.Now.TimeOfDay,
                 MoveCount= _moveCount,
             };
-            new XmlFileService().SaveToFile(saveModel, fileName);
+
+            if (Path.GetExtension(fileName).ToUpper()[1] == 'J')
+            {
+                new JsonFileService().SaveToFile(saveModel, fileName);
+            }
+            else
+            {
+                new XmlFileService().SaveToFile(saveModel, fileName);
+            }
         }
 
         public void ReadFromFile(string fileName)
         {
-            var openModel = new XmlFileService().ReadFromFile(fileName);
+            SaveGameStateModel openModel;
+            if (Path.GetExtension(fileName).ToUpper()[1] == 'J')
+            {
+                openModel = new JsonFileService().ReadFromFile<SaveGameStateModel>(fileName);
+            }
+            else
+            {
+                openModel = new XmlFileService().ReadFromFile<SaveGameStateModel>(fileName);
+            }
+
             _service.GetField().SetState(openModel.State);
             _moveCount = openModel.MoveCount;
             UpdateViewModel();

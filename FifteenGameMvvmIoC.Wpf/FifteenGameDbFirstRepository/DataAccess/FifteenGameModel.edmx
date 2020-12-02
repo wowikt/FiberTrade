@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FifteenGameDbFirstModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CurrentGameCells">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentGameId" Type="int" Nullable="false" />
+          <Property Name="CellIndex" Type="int" Nullable="false" />
+          <Property Name="CellValue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrentGames">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="GameStartTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MoveCount" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FinishedGames">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="GameFinishDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MoveCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CurrentGameCells_CurrentGames">
+          <End Role="CurrentGames" Type="Self.CurrentGames" Multiplicity="1" />
+          <End Role="CurrentGameCells" Type="Self.CurrentGameCells" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentGames">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentGameCells">
+              <PropertyRef Name="CurrentGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentGames_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="CurrentGames" Type="Self.CurrentGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentGames">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FinishedGames_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FinishedGames" Type="Self.FinishedGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FinishedGames">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FifteenGameDbFirstModelStoreContainer">
+          <EntitySet Name="CurrentGameCells" EntityType="Self.CurrentGameCells" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrentGames" EntityType="Self.CurrentGames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinishedGames" EntityType="Self.FinishedGames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CurrentGameCells_CurrentGames" Association="Self.FK_CurrentGameCells_CurrentGames">
+            <End Role="CurrentGames" EntitySet="CurrentGames" />
+            <End Role="CurrentGameCells" EntitySet="CurrentGameCells" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentGames_Users" Association="Self.FK_CurrentGames_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CurrentGames" EntitySet="CurrentGames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FinishedGames_Users" Association="Self.FK_FinishedGames_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FinishedGames" EntitySet="FinishedGames" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FifteenGameDbFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CurrentGameCell">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentGameId" Type="Int32" Nullable="false" />
+          <Property Name="CellIndex" Type="Int32" Nullable="false" />
+          <Property Name="CellValue" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CurrentGame" Relationship="Self.FK_CurrentGameCells_CurrentGames" FromRole="CurrentGameCells" ToRole="CurrentGames" />
+        </EntityType>
+        <EntityType Name="CurrentGame">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GameStartTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="MoveCount" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrentGameCells" Relationship="Self.FK_CurrentGameCells_CurrentGames" FromRole="CurrentGames" ToRole="CurrentGameCells" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CurrentGames_Users" FromRole="CurrentGames" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="FinishedGame">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GameFinishDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="MoveCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_FinishedGames_Users" FromRole="FinishedGames" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurrentGames" Relationship="Self.FK_CurrentGames_Users" FromRole="Users" ToRole="CurrentGames" />
+          <NavigationProperty Name="FinishedGames" Relationship="Self.FK_FinishedGames_Users" FromRole="Users" ToRole="FinishedGames" />
+        </EntityType>
+        <Association Name="FK_CurrentGameCells_CurrentGames">
+          <End Role="CurrentGames" Type="Self.CurrentGame" Multiplicity="1" />
+          <End Role="CurrentGameCells" Type="Self.CurrentGameCell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentGames">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentGameCells">
+              <PropertyRef Name="CurrentGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentGames_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="CurrentGames" Type="Self.CurrentGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentGames">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FinishedGames_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="FinishedGames" Type="Self.FinishedGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FinishedGames">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FifteenGameDbFirstEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CurrentGameCells" EntityType="Self.CurrentGameCell" />
+          <EntitySet Name="CurrentGames" EntityType="Self.CurrentGame" />
+          <EntitySet Name="FinishedGames" EntityType="Self.FinishedGame" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_CurrentGameCells_CurrentGames" Association="Self.FK_CurrentGameCells_CurrentGames">
+            <End Role="CurrentGames" EntitySet="CurrentGames" />
+            <End Role="CurrentGameCells" EntitySet="CurrentGameCells" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentGames_Users" Association="Self.FK_CurrentGames_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CurrentGames" EntitySet="CurrentGames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FinishedGames_Users" Association="Self.FK_FinishedGames_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FinishedGames" EntitySet="FinishedGames" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FifteenGameDbFirstModelStoreContainer" CdmEntityContainer="FifteenGameDbFirstEntities">
+          <EntitySetMapping Name="CurrentGameCells">
+            <EntityTypeMapping TypeName="FifteenGameDbFirstModel.CurrentGameCell">
+              <MappingFragment StoreEntitySet="CurrentGameCells">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurrentGameId" ColumnName="CurrentGameId" />
+                <ScalarProperty Name="CellIndex" ColumnName="CellIndex" />
+                <ScalarProperty Name="CellValue" ColumnName="CellValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentGames">
+            <EntityTypeMapping TypeName="FifteenGameDbFirstModel.CurrentGame">
+              <MappingFragment StoreEntitySet="CurrentGames">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GameStartTime" ColumnName="GameStartTime" />
+                <ScalarProperty Name="MoveCount" ColumnName="MoveCount" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinishedGames">
+            <EntityTypeMapping TypeName="FifteenGameDbFirstModel.FinishedGame">
+              <MappingFragment StoreEntitySet="FinishedGames">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GameFinishDate" ColumnName="GameFinishDate" />
+                <ScalarProperty Name="MoveCount" ColumnName="MoveCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FifteenGameDbFirstModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

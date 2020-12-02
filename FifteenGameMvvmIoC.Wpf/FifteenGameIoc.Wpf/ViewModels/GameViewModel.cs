@@ -6,20 +6,45 @@ using FifteenGame.FileService.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FifteenGameIoc.Wpf.ViewModels
 {
-    public class GameViewModel
+    public class GameViewModel : INotifyPropertyChanged
     {
         private IGameService _service;
         private int _moveCount = 0;
+        private User _user;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<ButtonViewModel> Buttons { get; } = new ObservableCollection<ButtonViewModel>();
+
+        public Window View { get; set; }
+
+        public User User 
+        { 
+            get => _user; 
+            set
+            {
+                _user = value;
+                if (_user != null)
+                {
+                    View.IsEnabled = true;
+                    _service.StartNewGame();
+                    UpdateViewModel();
+                    OnPropertyChanged(nameof(Title));
+                }
+            }
+        }
+
+        public string Title => $"Игра 15: [{User?.UserName ?? ""}]";
 
         public GameViewModel(IGameService service)
         {
@@ -27,6 +52,11 @@ namespace FifteenGameIoc.Wpf.ViewModels
             _service.StartNewGame();
             _moveCount = 0;
             BuildViewModel();
+        }
+
+        public void CloseView()
+        {
+            View.Close();
         }
 
         public void MakeMove(MoveDirection direction)
@@ -143,6 +173,11 @@ namespace FifteenGameIoc.Wpf.ViewModels
                     button.MoveDirection = MoveDirection.Up;
                 }
             }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

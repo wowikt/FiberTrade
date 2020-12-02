@@ -1,6 +1,8 @@
 ﻿using FifteenGame.Common.Enums;
+using FifteenGame.Common.Infrastructure;
 using FifteenGameIoc.Wpf.ViewModels;
 using Microsoft.Win32;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,7 @@ namespace FifteenGameIoc.Wpf.Views
         public MainWindow(GameViewModel viewModel)
         {
             DataContext = viewModel;
+            viewModel.View = this;
             InitializeComponent();
         }
 
@@ -62,6 +65,16 @@ namespace FifteenGameIoc.Wpf.Views
             {
                 ViewModel.ReadFromFile(dlg.FileName);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var loginDialog = NinjectKernel.Instance.Get<LoginWindow>();
+            loginDialog.Owner = this;
+            loginDialog.ShowInTaskbar = false;
+            loginDialog.Show();
+            loginDialog.ViewModel.ParentViewModel = ViewModel;
+            IsEnabled = false;
         }
     }
 }

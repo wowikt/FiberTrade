@@ -1,5 +1,7 @@
 ﻿using FifteenGame.Business.Services;
 using FifteenGame.Common.Interfaces;
+using FifteenGame.Common.Repositories;
+using FifteenGameDbFirstRepository.Repositories;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,9 @@ namespace FifteenGameMvvm.Wpf
         public override void Load()
         {
             Bind<IGameService>().To<GameService>().InTransientScope();
+            Bind<IUserRepository>().To<UserRepository>().InSingletonScope();
+            Bind<ICurrentGameRepository>().To<CurrentGameRepository>().InSingletonScope();
+            Bind<IUserService>().To<UserService>().InSingletonScope();
         }
     }
 }

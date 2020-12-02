@@ -1,4 +1,6 @@
-﻿using FifteenGameIoc.Wpf.Views;
+﻿using AutoMapper;
+using FifteenGame.Common.Infrastructure;
+using FifteenGameIoc.Wpf.Views;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -15,24 +17,37 @@ namespace FifteenGameMvvm.Wpf
     /// </summary>
     public partial class App : Application
     {
-        IKernel _kernel;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             ConfigureContainer();
             ComposeObjects();
+            CreateMapper();
             Current.MainWindow.Show();
         }
 
         private void ConfigureContainer()
         {
-            _kernel = new StandardKernel(new FifteenGameModule());
+            NinjectKernel.Instance = new StandardKernel(new FifteenGameModule());
         }
 
         private void ComposeObjects()
         {
-            Current.MainWindow = _kernel.Get<MainWindow>();
+            Current.MainWindow = NinjectKernel.Instance.Get<MainWindow>();
+        }
+
+        private void CreateMapper()
+        {
+            var config = new MapperConfiguration(MapperConfig);
+            GameMapper.Instance = new Mapper(config);
+        }
+
+        private void MapperConfig(IMapperConfigurationExpression cfg)
+        {
+            FifteenGameDbFirstRepository.Infrastructure.MapperConfig.Config(cfg);
+            FifteenGameIoc.Wpf.Infrastructure.MapperConfig.Config(cfg);
+            FifteenGame.Business.Infrastructure.MapperConfig.Config(cfg);
         }
     }
 }

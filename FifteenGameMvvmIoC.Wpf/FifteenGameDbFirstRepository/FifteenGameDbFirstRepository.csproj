@@ -4,14 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E6D037F9-CD61-475F-BB35-92A97A311B21}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>FifteenGameMvvm.Wpf</RootNamespace>
-    <AssemblyName>FifteenGameMvvm.Wpf</AssemblyName>
+    <ProjectGuid>{3B3518CD-6593-44FB-9C76-6691D82DEF0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FifteenGameDbFirstRepository</RootNamespace>
+    <AssemblyName>FifteenGameDbFirstRepository</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -34,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
@@ -44,80 +45,83 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="DataAccess\CurrentGame.cs">
+      <DependentUpon>FifteenGameModel.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="FifteenGameModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
+    <Compile Include="DataAccess\CurrentGameCell.cs">
+      <DependentUpon>FifteenGameModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="DataAccess\FifteenGameModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>FifteenGameModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Include="DataAccess\FifteenGameModel.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FifteenGameModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <Compile Include="DataAccess\FifteenGameModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FifteenGameModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\FinishedGame.cs">
+      <DependentUpon>FifteenGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>FifteenGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\MapperConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CurrentGameRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="DataAccess\FifteenGameModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FifteenGameModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataAccess\FifteenGameModel.edmx.diagram">
+      <DependentUpon>FifteenGameModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FifteenGame.Wpf\FifteenGame.Business\FifteenGame.Business.csproj">
-      <Project>{77f62970-7339-4395-8a74-d052f1d13036}</Project>
-      <Name>FifteenGame.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\FifteenGameWebApi\FifteenGame.Common\FifteenGame.Common.csproj">
       <Project>{4b2c8e75-0e9e-4cce-acc9-7cc6259f1124}</Project>
       <Name>FifteenGame.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FifteenGameDbFirstRepository\FifteenGameDbFirstRepository.csproj">
-      <Project>{3b3518cd-6593-44fb-9c76-6691d82def0b}</Project>
-      <Name>FifteenGameDbFirstRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FifteenGameIoc.Wpf\FifteenGameIoc.Wpf.csproj">
-      <Project>{31d049e1-ccfe-4ba7-b096-d5a76b63a42f}</Project>
-      <Name>FifteenGameIoc.Wpf</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataAccess\FifteenGameModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FifteenGameModel.Context.cs</LastGenOutput>
+      <DependentUpon>FifteenGameModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccess\FifteenGameModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FifteenGameModel.edmx</DependentUpon>
+      <LastGenOutput>FifteenGameModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

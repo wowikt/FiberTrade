@@ -1,6 +1,8 @@
-﻿using FifteenGame.Common.Enums;
+﻿using FifteenGame.Common.DataDto;
+using FifteenGame.Common.Enums;
 using FifteenGame.Common.Interfaces;
 using FifteenGame.Common.Models;
+using FifteenGame.Common.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,21 @@ namespace FifteenGame.Business.Services
 {
     public class GameService : IGameService
     {
+        private readonly ICurrentGameRepository _currentGameRepository;
+        private readonly IFinishedGameService _finishedGameService;
+
+        private int _moveCount;
+
         public GameField GameField { get; } = new GameField();
 
-        public GameService()
+        public int MoveCount => _moveCount;
+
+        public bool IsGameFinished { get; private set; }
+
+        public GameService(ICurrentGameRepository currentGameRepository, IFinishedGameService finishedGameService)
         {
+            _currentGameRepository = currentGameRepository;
+            _finishedGameService = finishedGameService;
             Initialize();
         }
 
@@ -34,7 +47,41 @@ namespace FifteenGame.Business.Services
             GameField.EmptyCellColumn = GameField.ColumnCount - 1;
         }
 
-        public void MakeMove(MoveDirection direction)
+        public void MakeMove(int userId, MoveDirection direction)
+        {
+            var gameState = _currentGameRepository.GetCurrentGameState(userId);
+            if (gameState != null)
+            {
+                GameField.SetState(gameState.State);
+                _moveCount = gameState.MoveCount;
+                MakeMove(direction);
+
+                if (IsGameFinished)
+                {
+                    _currentGameRepository.RemoveCurrentGame(userId);
+                    _finishedGameService.Create(new FinishedGame
+                    {
+                        GameFinishDate = DateTime.Now,
+                        UserId = userId,
+                        MoveCount = _moveCount,
+                    });
+                }
+                else
+                {
+                    _currentGameRepository.SaveCurrentGameState(userId, new GameStateDto
+                    {
+                        MoveCount = _moveCount,
+                        State = GameField.GetState(),
+                    });
+                }
+            }
+            else
+            {
+                StartNewGame(userId);
+            }
+        }
+
+        private void MakeMove(MoveDirection direction)
         {
             switch (direction)
             {
@@ -43,6 +90,7 @@ namespace FifteenGame.Business.Services
                     {
                         GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn] = GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn + 1];
                         GameField.EmptyCellColumn++;
+                        _moveCount++;
                     }
 
                     break;
@@ -51,6 +99,7 @@ namespace FifteenGame.Business.Services
                     {
                         GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn] = GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn - 1];
                         GameField.EmptyCellColumn--;
+                        _moveCount++;
                     }
 
                     break;
@@ -59,6 +108,7 @@ namespace FifteenGame.Business.Services
                     {
                         GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn] = GameField[GameField.EmptyCellRow + 1, GameField.EmptyCellColumn];
                         GameField.EmptyCellRow++;
+                        _moveCount++;
                     }
 
                     break;
@@ -67,12 +117,14 @@ namespace FifteenGame.Business.Services
                     {
                         GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn] = GameField[GameField.EmptyCellRow - 1, GameField.EmptyCellColumn];
                         GameField.EmptyCellRow--;
+                        _moveCount++;
                     }
 
                     break;
             }
 
             GameField[GameField.EmptyCellRow, GameField.EmptyCellColumn] = 0;
+            IsGameFinished = GameField.GetState().Select((val, idx) => new { Idx = idx, Val = val }).All(p => p.Val == p.Idx + 1 || p.Val == 0);
         }
 
         public void Shuffle()
@@ -84,12 +136,28 @@ namespace FifteenGame.Business.Services
                 var direction = (MoveDirection)(rnd.Next(4) + 1);
                 MakeMove(direction);
             }
+
+            _moveCount = 0;
         }
 
-        public void StartNewGame()
+        public void StartNewGame(int userId)
         {
             Initialize();
-            Shuffle();
+            var gameState = _currentGameRepository.GetCurrentGameState(userId);
+            if (gameState != null)
+            {
+                GameField.SetState(gameState.State);
+                _moveCount = gameState.MoveCount;
+            }
+            else
+            {
+                Shuffle();
+                _currentGameRepository.SaveCurrentGameState(userId, new GameStateDto
+                {
+                    MoveCount = 0,
+                    State = GameField.GetState(),
+                });
+            }
         }
 
         public GameField GetField()

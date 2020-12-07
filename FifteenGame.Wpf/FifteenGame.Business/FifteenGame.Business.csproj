@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\MapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FinishedGameService.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>

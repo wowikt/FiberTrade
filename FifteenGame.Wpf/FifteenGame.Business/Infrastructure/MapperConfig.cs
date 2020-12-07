@@ -14,6 +14,8 @@ namespace FifteenGame.Business.Infrastructure
         public static void Config(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<UserDto, User>();
+            cfg.CreateMap<FinishedGameDto, FinishedGame>();
+            cfg.CreateMap<FinishedGame, FinishedGameDto>();
         }
     }
 }

@@ -16,9 +16,12 @@ namespace FifteenGameMvvm.Wpf
         public override void Load()
         {
             Bind<IGameService>().To<GameService>().InTransientScope();
+            Bind<IUserService>().To<UserService>().InSingletonScope();
+            Bind<IFinishedGameService>().To<FinishedGameService>().InSingletonScope();
+
             Bind<IUserRepository>().To<UserRepository>().InSingletonScope();
             Bind<ICurrentGameRepository>().To<CurrentGameRepository>().InSingletonScope();
-            Bind<IUserService>().To<UserService>().InSingletonScope();
+            Bind<IFinishedGameRepository>().To<FinishedGameRepository>().InSingletonScope();
         }
     }
 }

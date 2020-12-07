@@ -37,7 +37,7 @@ namespace FifteenGameIoc.Wpf.ViewModels
                 if (_user != null)
                 {
                     View.IsEnabled = true;
-                    _service.StartNewGame();
+                    _service.StartNewGame(User.Id);
                     UpdateViewModel();
                     OnPropertyChanged(nameof(Title));
                 }
@@ -49,8 +49,7 @@ namespace FifteenGameIoc.Wpf.ViewModels
         public GameViewModel(IGameService service)
         {
             _service = service;
-            _service.StartNewGame();
-            _moveCount = 0;
+            //_service.StartNewGame(User.Id);
             BuildViewModel();
         }
 
@@ -66,8 +65,8 @@ namespace FifteenGameIoc.Wpf.ViewModels
                 return;
             }
 
-            _service.MakeMove(direction);
-            _moveCount++;
+            _service.MakeMove(User.Id, direction);
+            _moveCount = _service.MoveCount;
             UpdateViewModel();
         }
 

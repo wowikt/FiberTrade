@@ -88,6 +88,7 @@
     <Compile Include="Infrastructure\MapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CurrentGameRepository.cs" />
+    <Compile Include="Repositories\FinishedGameRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

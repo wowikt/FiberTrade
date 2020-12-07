@@ -17,6 +17,8 @@ namespace FifteenGameDbFirstRepository.Infrastructure
                 .ForMember("Login", opt => opt.Ignore())
                 .ForMember("Password", opt => opt.Ignore());
             cfg.CreateMap<UserDto, User>();
+            cfg.CreateMap<FinishedGameDto, FinishedGame>();
+            cfg.CreateMap<FinishedGame, FinishedGameDto>();
         }
     }
 }

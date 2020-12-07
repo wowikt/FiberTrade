@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace FifteenGame.Common.Repositories
 {
-    public interface ICurrentGameRepository
+    public interface IFinishedGameRepository
     {
-        GameStateDto GetCurrentGameState(int userId);
+        IEnumerable<FinishedGameDto> GetAll();
 
-        void SaveCurrentGameState(int userId, GameStateDto state);
-
-        void RemoveCurrentGame(int userId);
+        void Save(FinishedGameDto finishedGame);
     }
 }

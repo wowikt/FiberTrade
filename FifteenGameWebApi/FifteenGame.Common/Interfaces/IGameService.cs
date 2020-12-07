@@ -10,10 +10,12 @@ namespace FifteenGame.Common.Interfaces
 {
     public interface IGameService
     {
-        void StartNewGame();
+        void StartNewGame(int userId);
 
-        void MakeMove(MoveDirection direction);
+        void MakeMove(int userId, MoveDirection direction);
 
         GameField GetField();
+
+        int MoveCount { get; }
     }
 }

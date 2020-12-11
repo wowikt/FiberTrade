@@ -110,9 +110,9 @@
       <Project>{4b2c8e75-0e9e-4cce-acc9-7cc6259f1124}</Project>
       <Name>FifteenGame.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FifteenGameDbFirstRepository\FifteenGameDbFirstRepository.csproj">
-      <Project>{3b3518cd-6593-44fb-9c76-6691d82def0b}</Project>
-      <Name>FifteenGameDbFirstRepository</Name>
+    <ProjectReference Include="..\FifteenGameCodeFirstRepository\FifteenGameCodeFirstRepository.csproj">
+      <Project>{35fca7ff-f1cf-4386-9655-5e1314758355}</Project>
+      <Name>FifteenGameCodeFirstRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\FifteenGameIoc.Wpf\FifteenGameIoc.Wpf.csproj">
       <Project>{31d049e1-ccfe-4ba7-b096-d5a76b63a42f}</Project>

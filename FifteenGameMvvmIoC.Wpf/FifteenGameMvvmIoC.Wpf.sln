@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifteenGame.FileService", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifteenGameDbFirstRepository", "FifteenGameDbFirstRepository\FifteenGameDbFirstRepository.csproj", "{3B3518CD-6593-44FB-9C76-6691D82DEF0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifteenGameCodeFirstRepository", "FifteenGameCodeFirstRepository\FifteenGameCodeFirstRepository.csproj", "{35FCA7FF-F1CF-4386-9655-5E1314758355}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3B3518CD-6593-44FB-9C76-6691D82DEF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B3518CD-6593-44FB-9C76-6691D82DEF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B3518CD-6593-44FB-9C76-6691D82DEF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35FCA7FF-F1CF-4386-9655-5E1314758355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35FCA7FF-F1CF-4386-9655-5E1314758355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FCA7FF-F1CF-4386-9655-5E1314758355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35FCA7FF-F1CF-4386-9655-5E1314758355}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

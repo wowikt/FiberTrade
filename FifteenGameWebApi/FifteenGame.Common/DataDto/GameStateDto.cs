@@ -12,6 +12,6 @@ namespace FifteenGame.Common.DataDto
 
         public int MoveCount { get; set; }
 
-        public DateTime GameStartTime { get; set; }
+        public DateTime GameStartTime { get; set; } = DateTime.Now;
     }
 }

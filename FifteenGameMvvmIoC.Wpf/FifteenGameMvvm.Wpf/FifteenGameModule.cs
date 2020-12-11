@@ -1,7 +1,7 @@
 ﻿using FifteenGame.Business.Services;
 using FifteenGame.Common.Interfaces;
 using FifteenGame.Common.Repositories;
-using FifteenGameDbFirstRepository.Repositories;
+using FifteenGameCodeFirstRepository.Repositories;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;

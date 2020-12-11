@@ -15,5 +15,7 @@ namespace FifteenGame.Common.DataDto
         public DateTime GameFinishDate { get; set; }
 
         public int MoveCount { get; set; }
+
+        public TimeSpan? GameTime { get; set; }
     }
 }

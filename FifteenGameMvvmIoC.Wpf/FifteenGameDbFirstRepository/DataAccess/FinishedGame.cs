@@ -18,6 +18,7 @@ namespace FifteenGameDbFirstRepository.DataAccess
         public int UserId { get; set; }
         public System.DateTime GameFinishDate { get; set; }
         public int MoveCount { get; set; }
+        public Nullable<System.TimeSpan> GameTime { get; set; }
     
         public virtual User User { get; set; }
     }

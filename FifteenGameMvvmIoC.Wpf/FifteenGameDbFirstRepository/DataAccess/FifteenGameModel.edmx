@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FifteenGameDbFirstModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FifteenGameDbFirstModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CurrentGameCells">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,6 +32,7 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="GameFinishDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="MoveCount" Type="int" Nullable="false" />
+          <Property Name="GameTime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -96,8 +97,7 @@
             <End Role="FinishedGames" EntitySet="FinishedGames" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FifteenGameDbFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -132,6 +132,7 @@
           <Property Name="GameFinishDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="MoveCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_FinishedGames_Users" FromRole="FinishedGames" ToRole="Users" />
+          <Property Name="GameTime" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -228,6 +229,7 @@
           <EntitySetMapping Name="FinishedGames">
             <EntityTypeMapping TypeName="FifteenGameDbFirstModel.FinishedGame">
               <MappingFragment StoreEntitySet="FinishedGames">
+                <ScalarProperty Name="GameTime" ColumnName="GameTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="GameFinishDate" ColumnName="GameFinishDate" />

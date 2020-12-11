@@ -45,7 +45,7 @@ namespace FifteenGameMvvm.Wpf
 
         private void MapperConfig(IMapperConfigurationExpression cfg)
         {
-            FifteenGameDbFirstRepository.Infrastructure.MapperConfig.Config(cfg);
+            FifteenGameCodeFirstRepository.Infrastructure.MapperConfig.Config(cfg);
             FifteenGameIoc.Wpf.Infrastructure.MapperConfig.Config(cfg);
             FifteenGame.Business.Infrastructure.MapperConfig.Config(cfg);
         }

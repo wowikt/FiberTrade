@@ -4,6 +4,7 @@ using Abp.DynamicEntityProperties;
 using Abp.Zero.EntityFramework;
 using FifteenGame.Authorization.Roles;
 using FifteenGame.Authorization.Users;
+using FifteenGame.Game.Entities;
 using FifteenGame.MultiTenancy;
 
 namespace FifteenGame.EntityFramework
@@ -45,6 +46,12 @@ namespace FifteenGame.EntityFramework
         {
 
         }
+
+        public virtual IDbSet<CurrentGame> CurrentGames { get; set; }
+
+        public virtual IDbSet<CurrentGameCell> CurrentGameCells { get; set; }
+
+        public virtual IDbSet<FinishedGame> FinishedGames { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

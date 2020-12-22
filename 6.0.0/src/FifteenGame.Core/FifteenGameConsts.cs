@@ -4,6 +4,6 @@
     {
         public const string LocalizationSourceName = "FifteenGame";
 
-        public const bool MultiTenancyEnabled = true;
+        public const bool MultiTenancyEnabled = false;
     }
 }

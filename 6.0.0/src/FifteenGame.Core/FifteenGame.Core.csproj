@@ -221,6 +221,14 @@
     <Compile Include="Configuration\AppSettingProvider.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
+    <Compile Include="Game\Dto\GameField.cs" />
+    <Compile Include="Game\Entities\CurrentGame.cs" />
+    <Compile Include="Game\Entities\CurrentGameCell.cs" />
+    <Compile Include="Game\Entities\FinishedGame.cs" />
+    <Compile Include="Game\Enums\MoveDirection.cs" />
+    <Compile Include="Game\Repositories\ICurrentGameRepository.cs" />
+    <Compile Include="Game\Services\GameStateDomainService.cs" />
+    <Compile Include="Game\Services\IGameStateDomainService.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

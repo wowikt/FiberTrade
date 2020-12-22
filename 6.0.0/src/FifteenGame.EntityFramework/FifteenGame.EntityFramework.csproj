@@ -281,6 +281,10 @@
     <Compile Include="Migrations\202011130726515_Upgraded_To_ABP_6_0.designer.cs">
       <DependentUpon>202011130726515_Upgraded_To_ABP_6_0.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012160419350_DataModelCreated.cs" />
+    <Compile Include="Migrations\202012160419350_DataModelCreated.designer.cs">
+      <DependentUpon>202012160419350_DataModelCreated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData\DefaultEditionsCreator.cs" />
@@ -291,6 +295,7 @@
     <Compile Include="Migrations\SeedData\InitialHostDbBuilder.cs" />
     <Compile Include="Migrations\SeedData\TenantRoleAndUserBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EntityFramework\Repositories\CurrentGameRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -341,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011130726515_Upgraded_To_ABP_6_0.resx">
       <DependentUpon>202011130726515_Upgraded_To_ABP_6_0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012160419350_DataModelCreated.resx">
+      <DependentUpon>202012160419350_DataModelCreated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,9 +1,57 @@
-﻿
+﻿@using Abp.Web.Mvc.Extensions
+@model FifteenGame.Web.Models.Game.Game15ViewModel
+
 @{
     ViewBag.ActiveMenu = PageNames.FifteenGame; //The menu item will be active for this page.
 }
 
-<h2>Index</h2>
 
-<div>Fifteen game</div>
+<script>
+    function sendRequest(direction) {
+        if (direction == '') {
+            return;
+        }
+
+        $.post('@Url.Action("Index")', 'direction=' + direction);
+        location.reload();
+    }
+
+    function sendRequest2(direction) {
+        if (direction == '') {
+            return;
+        }
+
+        $('#direction').val(direction);
+        $('#main-form').submit();
+    }
+</script>
+
+<h2>Игра 15</h2>
+<div class="container">
+    @for (int row = 0; row < Model.RowCount; row++)
+    {
+        <div class="row">
+            @for (int col = 0; col < Model.ColumnCount; col++)
+            {
+                <div class="col-md-1">
+                    @if (Model.Buttons[row, col].IsVisible)
+                    {
+                        string direction = string.Empty;
+                        if (Model.Buttons[row, col].IsEnabled)
+                        {
+                            direction = Model.Buttons[row, col].MoveDirection.ToString();
+                        }
+
+                        <button class="btn btn-primary" onclick="sendRequest2('@direction');">@Model.Buttons[row, col].Text</button>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@using (Html.BeginForm("MakeMove", "Game15", FormMethod.Post, new { id = "main-form" }))
+{
+    @Html.Hidden("direction");
+}
 

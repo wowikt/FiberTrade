@@ -1,4 +1,6 @@
 ﻿using Abp.Web.Mvc.Authorization;
+using FifteenGame.Game;
+using FifteenGame.Web.Models.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,19 @@ namespace FifteenGame.Web.Controllers
     [AbpMvcAuthorize]
     public class FifteenGameController : FifteenGameControllerBase
     {
+        private readonly IGameAppService _gameAppService;
+
+        public FifteenGameController(IGameAppService gameAppService)
+        {
+            _gameAppService = gameAppService;
+        }
+
         // GET: FifteenGame
         public ActionResult Index()
         {
-            return View();
+            var viewModel = new Game15ViewModel();
+            viewModel.BuildFromGameField(_gameAppService.GameField);
+            return View(viewModel);
         }
     }
 }

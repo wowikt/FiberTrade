@@ -22,6 +22,11 @@ namespace FifteenGame.Game.Services
         public GameField GetCurrentGame(int userId)
         {
             var currentGame = _currentGameRepository.GetByUserId(userId);
+            if (currentGame == null)
+            {
+                return null;
+            }
+
             var result = new GameField { MoveCount = currentGame.MoveCount };
             result.SetState(currentGame.CurrentGameCells.Select((val, idx) => new { Index = idx, Value = val }).OrderBy(c => c.Index).Select(c => c.Value.CellValue));
             return result;
@@ -33,7 +38,8 @@ namespace FifteenGame.Game.Services
             {
                 MoveCount = gameField.MoveCount,
                 CurrentGameCells = gameField.GetState().Select((val, idx) => new CurrentGameCell { CellIndex = idx, CellValue = val }).ToList(),
-                User = new Authorization.Users.User { Id = userId }
+                UserId = userId,
+                GameStartTime = DateTime.Now,
             };
             _currentGameRepository.Save(currentGame);
         }

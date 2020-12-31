@@ -50,8 +50,9 @@
     }
 </div>
 
-@using (Html.BeginForm("MakeMove", "Game15", FormMethod.Post, new { id = "main-form" }))
+@using (Html.BeginForm("MakeMove", "FifteenGame", FormMethod.Post, new { id = "main-form" }))
 {
     @Html.Hidden("direction");
+    @Html.AntiForgeryToken();
 }
 

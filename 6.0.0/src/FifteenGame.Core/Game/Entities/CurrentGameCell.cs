@@ -14,5 +14,7 @@ namespace FifteenGame.Game.Entities
         public int CellValue { get; set; }
 
         public virtual CurrentGame CurrentGame { get; set; }
+
+        public int CurrentGameId { get; set; }
     }
 }

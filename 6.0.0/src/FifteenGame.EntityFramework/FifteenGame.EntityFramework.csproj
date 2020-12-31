@@ -285,6 +285,10 @@
     <Compile Include="Migrations\202012160419350_DataModelCreated.designer.cs">
       <DependentUpon>202012160419350_DataModelCreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012230404133_AddedIds.cs" />
+    <Compile Include="Migrations\202012230404133_AddedIds.designer.cs">
+      <DependentUpon>202012230404133_AddedIds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData\DefaultEditionsCreator.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012160419350_DataModelCreated.resx">
       <DependentUpon>202012160419350_DataModelCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012230404133_AddedIds.resx">
+      <DependentUpon>202012230404133_AddedIds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

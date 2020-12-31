@@ -1,4 +1,6 @@
-﻿using FifteenGame.Common.Enums;
+﻿using Abp.Application.Services;
+using FifteenGame.Authorization.Users;
+using FifteenGame.Common.Enums;
 using FifteenGame.Game.Dto;
 using FifteenGame.Game.Repositories;
 using FifteenGame.Game.Services;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FifteenGame.Game
 {
-    public class GameAppService : IGameAppService
+    public class GameAppService : ApplicationService, IGameAppService
     {
         private readonly IGameStateDomainService _gameStateDomainService;
 
@@ -43,13 +45,14 @@ namespace FifteenGame.Game
             GameField.EmptyCellColumn = GameField.ColumnCount - 1;
         }
 
-        public void MakeMove(int userId, MoveDirection direction)
+        public GameField MakeMove(MoveDirection direction)
         {
+            int userId = (int?)AbpSession.UserId ?? 0;
             var gameState = _gameStateDomainService.GetCurrentGame(userId);
             if (gameState != null)
             {
                 GameField = gameState;
-                MakeMove(direction);
+                MakeMoveImpl(direction);
 
                 if (IsGameFinished)
                 {
@@ -65,14 +68,16 @@ namespace FifteenGame.Game
                 {
                     _gameStateDomainService.SaveCurrentGame(userId, GameField);
                 }
+
+                return GameField;
             }
             else
             {
-                StartNewGame(userId);
+                return GetCurrentGame();
             }
         }
 
-        private void MakeMove(MoveDirection direction)
+        private void MakeMoveImpl(MoveDirection direction)
         {
             switch (direction)
             {
@@ -125,14 +130,15 @@ namespace FifteenGame.Game
             for (int i = 0; i < shuffleCount; i++)
             {
                 var direction = (MoveDirection)(rnd.Next(4) + 1);
-                MakeMove(direction);
+                MakeMoveImpl(direction);
             }
 
             GameField.MoveCount = 0;
         }
 
-        public void StartNewGame(int userId)
+        public GameField GetCurrentGame()
         {
+            int userId = (int?)AbpSession.UserId ?? 0;
             var gameState = _gameStateDomainService.GetCurrentGame(userId);
             if (gameState != null)
             {
@@ -144,6 +150,8 @@ namespace FifteenGame.Game
                 Shuffle();
                 _gameStateDomainService.SaveCurrentGame(userId, GameField);
             }
+
+            return GameField;
         }
 
         public GameField GetField()

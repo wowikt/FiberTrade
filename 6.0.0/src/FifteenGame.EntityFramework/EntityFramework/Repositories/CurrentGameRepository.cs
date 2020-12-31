@@ -17,12 +17,12 @@ namespace FifteenGame.EntityFramework.Repositories
 
         public CurrentGame GetByUserId(int userId)
         {
-            return GetAllIncluding(cg => cg.CurrentGameCells).Where(cg => cg.User.Id == userId).FirstOrDefault();
+            return GetAllIncluding(cg => cg.CurrentGameCells).Where(cg => cg.UserId == userId).FirstOrDefault();
         }
 
         public void RemoveCurrentGame(int userId)
         {
-            var currentGame = GetAll().FirstOrDefault(game => game.User.Id == game.User.Id);
+            var currentGame = GetAll().FirstOrDefault(game => game.UserId == userId);
             if (currentGame == null)
             {
                 return;
@@ -38,13 +38,12 @@ namespace FifteenGame.EntityFramework.Repositories
 
         public void Save(CurrentGame cg)
         {
-            var currentGame = GetAll().FirstOrDefault(game => game.User.Id == game.User.Id);
+            var currentGame = GetAll().FirstOrDefault(game => game.UserId == cg.UserId);
             if (currentGame == null)
             {
-                var user = ((FifteenGameDbContext)GetDbContext()).Users.FirstOrDefault(u => u.Id == cg.User.Id);
                 currentGame = new CurrentGame
                 {
-                    User = user,
+                    UserId = cg.UserId,
                     MoveCount = cg.MoveCount,
                     GameStartTime = cg.GameStartTime,
                 };
@@ -56,13 +55,9 @@ namespace FifteenGame.EntityFramework.Repositories
                 currentGame.GameStartTime = cg.GameStartTime;
             }
 
-            var deletedCells = currentGame.CurrentGameCells;
-            if (deletedCells?.Any() ?? false)
+            while (currentGame.CurrentGameCells.Any())
             {
-                foreach (var cell in deletedCells)
-                {
-                    ((FifteenGameDbContext)GetDbContext()).CurrentGameCells.Remove(cell);
-                }
+                ((FifteenGameDbContext)GetDbContext()).CurrentGameCells.Remove(currentGame.CurrentGameCells.First());
             }
 
             int i = 1;

@@ -12,6 +12,8 @@ namespace FifteenGame.Game.Entities
     {
         public virtual User User { get; set; }
 
+        public long UserId { get; set; }
+
         public DateTime GameStartTime { get; set; }
 
         public TimeSpan GameTime { get; set; }

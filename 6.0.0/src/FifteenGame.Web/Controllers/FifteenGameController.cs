@@ -1,4 +1,5 @@
 ﻿using Abp.Web.Mvc.Authorization;
+using FifteenGame.Common.Enums;
 using FifteenGame.Game;
 using FifteenGame.Web.Models.Game;
 using System;
@@ -23,8 +24,16 @@ namespace FifteenGame.Web.Controllers
         public ActionResult Index()
         {
             var viewModel = new Game15ViewModel();
-            viewModel.BuildFromGameField(_gameAppService.GameField);
+            viewModel.BuildFromGameField(_gameAppService.GetCurrentGame());
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult MakeMove(MoveDirection direction)
+        {
+            var viewModel = new Game15ViewModel();
+            viewModel.BuildFromGameField(_gameAppService.MakeMove(direction));
+            return View("Index", viewModel);
         }
     }
 }
